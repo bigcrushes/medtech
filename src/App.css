@@ -28,6 +28,17 @@
   color: #61dafb;
 }
 
+a {
+  text-decoration: none;
+  color:#666DDC;
+  font-size: 2.25vmin;
+}
+
+a:visited{
+  color:#666DDC;
+  font-size: 2.25vmin;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
