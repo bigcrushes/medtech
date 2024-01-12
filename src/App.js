@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css'
-import { BrowserRouter as Router, Routes, Route, Link, withRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Home from './home';
 import Physion from './projects/Physion';
 import Morphine from './projects/Morphine';
@@ -17,37 +17,62 @@ import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
+import TelegramIcon from '@mui/icons-material/Telegram';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function App() {
   
   return (
     <Router>
       <div className="App">
-        <AppShell/>            
-        <Routes>
-          <Route exact path="/" element={<Home/>}  />
-          <Route exact path="/physion" element={<Physion/>}  />
-          <Route exact path="/morphine" element={<Morphine/>}  />
-          <Route exact path="/connecto" element={<Connecto/>}  />
-          <Route exact path="/onetouch" element={<OneTouch/>}  />
-          <Route exact path="/heartsync" element={<Heartsync/>}  />
-          <Route exact path="/archives" element={<Archives/>}  />
-          <Route exact path="/pubssubcomm" element={<PubsSubcomm/>}  />
-          <Route exact path="/recruitment" element={<Recruitment/>}  />
-          <Route exact path="/merchandise" element={<Merchandise/>}  />
-          <Route exact path="/contact" element={<Contact/>}  />
-        </Routes>
+        <AppShell/>
+        <body style={{minHeight:'100vh', display:'flex'}}>           
+          <Routes>
+            <Route exact path="/" element={<Home/>}  />
+            <Route exact path="/physion" element={<Physion/>}  />
+            <Route exact path="/morphine" element={<Morphine/>}  />
+            <Route exact path="/connecto" element={<Connecto/>}  />
+            <Route exact path="/onetouch" element={<OneTouch/>}  />
+            <Route exact path="/heartsync" element={<Heartsync/>}  />
+            <Route exact path="/archives" element={<Archives/>}  />
+            <Route exact path="/pubssubcomm" element={<PubsSubcomm/>}  />
+            <Route exact path="/recruitment" element={<Recruitment/>}  />
+            <Route exact path="/merchandise" element={<Merchandise/>}  />
+            <Route exact path="/contact" element={<Contact/>}  />
+          </Routes>
+        </body> 
+        <Footer/>
       </div> 
     </Router>
     
   )
 }
 
+function Footer() {
+  return (
+    <footer>
+      <Box bgcolor={'#121A46'} padding={'20px'}>
+      <div className="social-icons">
+        <a href="https://t.me/NUSMedTech" target="_blank">
+          <TelegramIcon sx={{ mr: 7 }}/>
+        </a>
+        <a href="https://www.instagram.com/nus.medtech/" target="_blank">
+          <InstagramIcon/>
+        </a>
+        <a href="https://www.linkedin.com/company/nus-medtech/" target="_blank">
+          <LinkedInIcon sx={{ ml: 7 }}/>
+        </a>
+      </div>
+      </Box>
+    </footer>
+  );
+}
+
 function AppShell() {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleClick = (event) => {
+    const handleHover = (event) => {
       setAnchorEl(event.currentTarget);
     };
 
@@ -60,54 +85,60 @@ function AppShell() {
 
     return (
       <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: '#121A46' }}>
         <Toolbar>
-          <img src="/medtech_logo.png" alt="image" height="50" width="50"/>
-            <Box sx={{ flexGrow: 1 }} aria-describedby={id} variant="contained" onClick={handleClick}>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Projects
-              </Typography>
-            </Box>
-            <Popover
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              onClose={handleClose}
-              anchorOrigin={{
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <img src="/medtech_logo.png" alt="image" height="50" width="50"/>
+          </Link>
+          <Typography sx={{ flexGrow: 1 }} variant="h6" component="div" onClick={handleHover}>
+            <Link>
+              Projects▾
+            </Link>
+          </Typography>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
-              }}
-            >
-        <Typography sx={{ p: 2 }}>
-          <Link to="/physion" style={{ textDecoration: 'none' }}>Physion</Link>
-        </Typography>
-        <Typography sx={{ p: 2 }}>
-          <Link to="/morphine" style={{ textDecoration: 'none' }}>Morphine</Link>
-        </Typography>
-        <Typography sx={{ p: 2 }}>
-          <Link to="/connecto" style={{ textDecoration: 'none' }}>Connecto</Link>
-        </Typography>
-        <Typography sx={{ p: 2 }}>
-          <Link to="/onetouch" style={{ textDecoration: 'none' }}>One Touch</Link>
-        </Typography>
-        <Typography sx={{ p: 2 }}>
-          <Link to="/heartsync" style={{ textDecoration: 'none' }}>Heartsync</Link>
-        </Typography>
-      </Popover>
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+          >
+            <Typography sx={{ p: 2 }}>
+              <Link to="/physion">Physion</Link>
+            </Typography>
+            <Typography sx={{ p: 2 }}>
+              <Link to="/morphine">Morphine</Link>
+            </Typography>
+            <Typography sx={{ p: 2 }}>
+              <Link to="/connecto">Connecto</Link>
+            </Typography>
+            <Typography sx={{ p: 2 }}>
+              <Link to="/onetouch">One Touch</Link>
+            </Typography>
+            <Typography sx={{ p: 2 }}>
+              <Link to="/heartsync">Heartsync</Link>
+            </Typography>
+          </Popover>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/archives" style={{ textDecoration: 'none' }}>Archives</Link>
+            <Link to="/archives">Archives</Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/pubssubcomm" style={{ textDecoration: 'none' }}>Pubs Subcomm</Link>
+            <Link to="/pubssubcomm">Pubs Subcomm</Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/recruitment" style={{ textDecoration: 'none' }}>Recruitment</Link>
+            <Link to="/recruitment">Recruitment</Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/merchandise" style={{ textDecoration: 'none' }}>Merchandise</Link>
+            <Link to="/merchandise">Merchandise</Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/contact" style={{ textDecoration: 'none' }}>Contact Us</Link>
+            <Link to="/contact">Contact Us</Link>
           </Typography>
         </Toolbar>
       </AppBar>

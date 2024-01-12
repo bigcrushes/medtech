@@ -1,9 +1,10 @@
+import { Height } from "@mui/icons-material";
 
 const Home = () => {
     return (
-        <div>
-
-        </div>
+        <body >
+            
+        </body>
 
     )
 }
